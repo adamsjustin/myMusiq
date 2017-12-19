@@ -67,6 +67,9 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
+.fontChange {
+    font-size: 11px;
+}
 
 /* Set a style for all buttons */
 button {
