@@ -114,7 +114,7 @@ button:hover {
 
 /* song styles */
 .songLi {
-    background-color: indianred;
+    background-color: slategray;
     border-radius: 10px;
     border-style: groove;
     border-width: 2px;
@@ -129,7 +129,7 @@ button:hover {
 
 /* playMusic button styling */
 #playMusic {
-    background-color: darkslategray;
+    background-color: slategray;
     border-style: groove;
     border-width: 5px;
 }
