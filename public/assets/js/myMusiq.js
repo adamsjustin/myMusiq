@@ -189,7 +189,12 @@ $(function () {
   $('#createPlaylist').on('click', function () {
     plId   = $('#playListId').val();
     userId = $('#userId').val();
-    window.location.href = '/api/playlist/' + userId;
+    if (userId){
+      window.location.href = '/api/playlist/' + userId;
+    } else {
+
+      alert("Account User is not signed in.\nPlayer is not available until User is Signed In.");
+    }
     // $.ajax("/playlist/" + userId, function(response) {
     // });
   })
