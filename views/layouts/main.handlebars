@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<title>myMusiq Application</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script>
+
+var holdPlayList = [];
+var holdSongs = [];
+var playSongArray = [];
+var playInitial = true;
+var selectedVideoId;
+ $(document).ready(function(){
+
+  if ( $("#userId").val() !== ""){
+       $("#overlay").hide();
+       $('.modal').hide();  
+       getPlayList($("#userId").val());
+
+  } else {
+       $("#overlay").show();
+       $('.modal').show();
+      
+  }// end if 
+
+$("#playMusic").on("click",function(){
+
+  //-------------------------------------------------------
+  // on the initial play..(playInitial == true, then it the player starts)
+  // otherwise..it creates a new array and restarts the player with the new array
+  //-------------------------------------------------------
+  if (playInitial){
+    if (selectedVideoId){
+      $("#player").ready(playTheMusic);
+      playInitial = false;
+    }
+    else if (playSongArray.length > 0){
+      $("#player").ready(playTheMusic);
+      playInitial = false;
+     } else {
+      alert("A playlist has not been selected, please click 'Playlist' once a list of songs is available to start the Music!!");
+    }
+ 
+  } else {
+
+    player.stopVideo();
+    currentVideoId = 0;
+    player.playVideo();
+  }
+//  playTheMusic();
+});
+
+
+{{!-- $("#playNewMusic").on("click",function(){
+
+  alert("yy");
+//  onPlayerReady("onStateChange");
+   player.stopVideo();
+
+   player.playVideo();
+//  $("#player").ready(playTheMusic);
+//  playTheMusic();
+}); --}}
+
+$('#showPlayList').on('click','li',function(){
+//-------------------------------------------------------
+// Updates the holdSongs array through getSongs() method 
+// based upon the playlist id value
+//-------------------------------------------------------
+  var text = $(this).text();
+  var plKey = $(this).attr("value");
+  plId   = $(this).attr("value");
+  $('#playListId').val(plId);
+  getSongs($("#userId").val(),plKey);
+  console.log(this);
+
+})
+
+$('#showSongs').on('click','li',function(){
+  console.log('working')
+//-------------------------------------------------------
+// Updates the holdSongs array through getSongs() method 
+// based upon the playlist id value
+//-------------------------------------------------------
+  var songKey = $(this).attr("value");
+  selectedVideoId = playSongArray[songKey];
+  
+
+})
+
+});
+</script>
+<style>
+/* custom css */
+</style>
+</head>
+<body class="w3-black">
+{{{body}}}
+
+<script src="/assets/js/myMusiq.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+
+<div class="container">
+  <div class="row">
+     <div class="col-sm-12 col-lg-4" id="1_col">
+      <h3>Existing Burgers</h3>
+        <ul>
+          {{#each play_lists}}
+              <li>{{playlist_names}}</li>
+          {{/each}}
+        </ul>
+</div> 

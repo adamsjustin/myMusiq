@@ -1,0 +1,66 @@
+............................................................
+from html...
+............................................................
+$("#btnSubmit").on("click",function(){
+
+		event.preventDefault();
+
+		newBurger = {
+			burger_name: $("#brgr").val().trim()
+			};// end
+
+		$.ajax("/api/burger",{
+				type: "POST",
+				data: newBurger
+			}).then(
+				function(result){
+			}// end fcn
+		);// end then
+
+	})//end on click
+
+............................................................
+from controller...
+............................................................
+router.post("/api/burger", function(req, res) {
+//--------------------------------------------
+// inserts the data..
+//--------------------------------------------
+   burger.insertOne(
+       ["burger_name","devoured"],
+       [req.body.burger_name,false], 
+       function(result){
+        result["burger_name"] = req.body.burger_name;
+        // need to send a response back to the calling ajax..
+        // this res goes back to the ajax call in the main.handler..
+        res.status(200).json(result);
+        //res.json(result)
+      })
+
+});
+............................................................
+from myMusiq.json...
+............................................................
+insertOne: function(table, cols, vals, cb) {
+    orm.insertOne(table, cols, vals, function(result) {
+      // this function(result) comes from burger.js.
+      // this cb(result) goes back to burger_controller..js
+      cb(result);
+    });
+  },
+
+............................................................  
+from orm..
+............................................................
+insertOne: function(table, fields, val,cb) {
+    var queryString = "INSERT INTO ?? ( ?? ) VALUES (?)";
+    //this cb is from burger.js and pass back the cb on line 56
+    //this fcn is part/parcel of the connect.query.
+    connection.query(queryString, [table, fields, val], function(err, result) {
+      console.log("this is insert sql " + this.sql)
+      if (err) {
+        throw err;
+      }
+        cb(result);
+      });
+  },

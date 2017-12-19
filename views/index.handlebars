@@ -1,0 +1,226 @@
+
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  {{!-- <!-- Avatar image in top left corner -->
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a> --}}
+  <button id='home' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>HOME</p>
+  </button>
+  <button id='createNewUser' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>CREATE USER</p>
+  </button>
+  
+  <button id='createPlaylist' class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>CREATE PLAYLIST</p>
+  </button>
+
+  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-rocket w3-xxlarge"></i>
+    <p>MUSIQ</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>SHARE</p>
+  </a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-headphones w3-xxlarge"></i>
+    <p>DJ MODE</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+
+    <input type='hidden' value='{{userId}}' id='userId'>
+
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <img src="/assets/img/myMusicLogoWhite_T.png" width="50px" id='image'>
+    <h1 class="w3-jumbo" id='header'><span class="w3-hide-small">my</span>Musiq</h1>
+      <table border="1">
+    <tr><th class='th300'>Playlists<br>(Click Playlist to show Songs)</th><th class='th300'>Songs for selected playlist<br>(Click Playlist to change songs)</th><th class='th360'>Action<br>(Click PlayMusic to start or change music)</th></tr>
+    <tr><td><div id="showPlayList" value=""></div></td><td><div id="showSongs"></div></td><td><div id='playMusicDiv'><button id="playMusic">Play My Music</button></div></td></tr>
+    </table>
+      <div id="newUsrId"></div>      <div id="newUsrEmail"></div><div id="newFrstName"></div><div id="newLastName"></div><br>
+      <div id="usrId"></div>      <div id="usrEmail"></div><br>
+      <div id="plId"></div>      <div id="plName"></div><br>
+      <div id="songId"></div>      <div id="songName"></div> <div id="songURL"></div><br>
+      <div id="overlay">
+
+    <div id="login" class="modal">
+      
+      <form class="modal-content animate" style='color: white;
+    background-color: black;'>
+    
+
+        {{!-- <div class="container">
+    
+            <div>
+                <label><b>First Name</b></label>
+                <input type="text" placeholder="Enter First name" name="fstn" id="newFname" required>
+            </div> 
+            <div>
+                <label><b>Last Name</b></label>
+                <input type="text" placeholder="Enter Last name" name="lstn" id="newLname" required>
+            </div> 
+            <div>
+                <label><b>E-mail</b></label>
+                <input type="text" placeholder="Enter E-mail" name="email" id="newEmail" required>
+            </div> 
+            <div>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="newPswd" required>
+            </div>
+          <button id='tstNewUser'>Create</button>
+          <input type="checkbox" checked="checked" style = "font-color: black"> Remember me
+             
+        </div> --}}
+        <div class="container">
+    
+            <div>
+                <label><b>E-mail</b></label>
+                <input type="text" placeholder="Enter E-mail" name="email" id="email" required>
+            </div> 
+            <div>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="pswd" id="pswd" required>
+            </div>
+          <button id='tstUser' style='color: white;
+    background-color: slategray;'>Sign On</button>
+            
+        </div>
+    
+        <div class="container" style="background-color: black">
+          <button type="button" onclick="document.getElementById('login').style.display='none'" id='newUser' class="cancelbtn" style='background-color: slategray'>New User?</button>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+
+
+  <!-- check id test button -->
+
+</script>
+  {{!-- <div id='newUsrId'>hello</div> --}}
+
+    <div id="player"></div>
+    
+  
+
+    <!--this is where our you tube begins-->
+        <script>
+
+          // 2. This code loads the IFrame Player API code asynchronously.
+          var tag = document.createElement('script');
+    
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+          // 3. This function creates an <iframe> (and YouTube player)
+          //    after the API code downloads.
+
+          //https://www.youtube.com/watch?v=WPOexuFLJ8c
+          var player, currentVideoId = 0;
+          {{!-- function onYouTubeIframeAPIReady() { --}}
+          function playTheMusic() {
+            player = new YT.Player('player', {
+              height: '390',
+              width: '640',
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+          }
+
+    
+          // 4. The API will call this function when the video player is ready.
+          function onPlayerReady(event) {
+            console.log("event is " + event.data);
+            console.log(currentVideoId);
+            // doesn't start the player until after playSongArray is populated
+            if (selectedVideoId) {
+              event.target.loadVideoById(selectedVideoId);
+            } else if (playSongArray.length > 0){
+                event.target.loadVideoById(playSongArray[currentVideoId]);
+            } else {
+              //alert("Sorry..a playist is not ready ")
+            }
+          }
+    
+          // 5. The API calls this function when the player's state changes.
+          //    The function indicates that when playing a video (state=1),
+          //    the player should play for six seconds and then stop.
+          var done = false;
+           function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                currentVideoId++;
+                if (currentVideoId < playSongArray.length) {
+                    player.loadVideoById(playSongArray[currentVideoId]);
+                }
+            }if (event.data == YT.PlayerState.CUED){
+              player.loadVideoById(selectedVideoId);
+            } 
+        }
+        function playSelectedVideo(){
+          loadVideoById(selectedVideoId);
+        }
+          function stopVideo() {
+            player.stopVideo();
+          }
+          function playVideo(event){
+            player.playVideo();
+          }
+        </script>
+  </header>
+  <!-- About Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">How it works</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>myMusiq lets you add You Tube videos into the system and play them continuously.<br>
+    Once you create an account, then you create a play list and then add songs to that playlist.<br>
+    Once songs are added, then those songs may be played through the Play List. <br>
+    Options includes:
+    <ul>
+      <li>Create an account</li>
+      <li>Create a Playlist</li>
+      <li>Add Songs to the PLaylist</li>
+      <li>Play a selected Playlist</li>
+      <li>Change the selected Playlist and start that video stream</li>
+
+    </ul>
+    </p>
+    
+    <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
