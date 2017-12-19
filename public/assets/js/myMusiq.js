@@ -289,7 +289,7 @@ function getSongs(usrId,plId) {
     var showSongHtml = "";
     for (var key in result.userId) {
       holdSongs.push(result.userId[key]);
-      showSongHtml = showSongHtml + "<li value= " + key + " class='songLi'>" + result.userId[key].song_name + "</li>";
+      showSongHtml = showSongHtml + "<li value= " + key + " class='songLi'><button>" + result.userId[key].song_name + "</button></li>";
     }
     $("#showSongs").empty();
     $("#showSongs").append($("<ul/>")
