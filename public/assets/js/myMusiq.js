@@ -43,7 +43,7 @@ $(function () {
       // display msssg about loading mssg
       $("#newUserResult").html("Success!! '" + result.fName + " " + result.lName + "' Has been added")
       usrLoggedIn = true;
-  
+      
     }); //end.then
   });
 
